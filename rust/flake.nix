@@ -13,7 +13,7 @@
         rust = pkgs.rust-bin.selectLatestNightlyWith (toolchain:
           toolchain.default.override { extensions = [ "rust-src" ]; });
         darwinInputs = with pkgs;
-          lib optionals stdenv.isDarwin
+          lib.optionals stdenv.isDarwin
             (with pkgs.darwin.apple_sdk.framework; [ ]);
       in
       with pkgs; {

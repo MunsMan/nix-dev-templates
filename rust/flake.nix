@@ -14,7 +14,7 @@
           toolchain.default.override { extensions = [ "rust-src" ]; });
         darwinInputs = with pkgs;
           lib.optionals stdenv.isDarwin
-            (with pkgs.darwin.apple_sdk.framework; [ ]);
+            (with pkgs.darwin.apple_sdk.frameworks; [ ]);
       in
       with pkgs; {
         devShells.default = mkShell {

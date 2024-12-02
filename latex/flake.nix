@@ -21,22 +21,24 @@
             texliveSmall
           ]
           ++ (with pkgs.texlivePackages; [ ]);
+        watch = pkgs.writeShellApplication {
+          name = "watch";
+          runtimeInputs = [ ];
+          text = ''
+            latexmk -pdf -pvc "$0"
+          '';
+        };
+
       in
       {
         devShell = pkgs.mkShellNoCC {
           packages = [
             latex
-            self.packages.watch
+            watch
           ];
         };
         packages = {
-          watch = pkgs.writeShellApplication {
-            name = "watch";
-            runtimeInputs = [ ];
-            text = ''
-              latexmk -pdf -pvc $0
-            '';
-          };
+          inherit watch;
         };
       }
     );

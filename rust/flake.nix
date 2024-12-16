@@ -22,8 +22,9 @@
       with pkgs;
       {
         devShells.default = mkShell {
-          packages = [
+          packages = with pkgs; [
             rust
+            rust-analyzer
           ];
         };
       }

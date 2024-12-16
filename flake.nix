@@ -25,6 +25,10 @@
           path = ./latex;
           description = "A basic latex starter template";
         };
+        rust = {
+          path = ./rust;
+          description = "A basic rust flake using the stable toolchain.";
+        };
       };
     };
 }

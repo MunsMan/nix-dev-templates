@@ -5,21 +5,27 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = { nixpkgs, rust-overlay, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      nixpkgs,
+      rust-overlay,
+      flake-utils,
+      ...
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         overlays = [ (import rust-overlay) ];
         pkgs = import nixpkgs { inherit system overlays; };
-        rust = pkgs.rust-bin.selectLatestNightlyWith (toolchain:
-          toolchain.default.override { extensions = [ "rust-src" ]; });
-        darwinInputs = with pkgs;
-          lib.optionals stdenv.isDarwin
-            (with pkgs.darwin.apple_sdk.frameworks; [ ]);
+        rust = pkgs.rust-bin.latest.default;
       in
-      with pkgs; {
+      with pkgs;
+      {
         devShells.default = mkShell {
-          packages = [ rust rust-analyzer-unwrapped ] ++ darwinInputs;
+          packages = [
+            rust
+          ];
         };
-      });
+      }
+    );
 }
-

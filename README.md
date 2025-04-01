@@ -3,6 +3,12 @@
 ## Introduction
 Welcome to my collection of Nix development templates! This repository is my personal project where I am compiling a variety of customizable templates designed to streamline the development process. Whether you are new to Nix or an experienced user, these templates are crafted to offer flexibility and efficiency in managing development environments.
 
+## Get Started
+
+```{bash}
+nix flake init --template github:munsman/nix-dev-templates#<project>
+```
+
 ## What is Nix?
 Nix is a powerful package management and system configuration tool for Linux and other Unix systems. It provides reproducible, declarative, and reliable environments, ideal for developers who value consistent and isolated development settings.
 

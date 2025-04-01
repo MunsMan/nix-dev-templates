@@ -15,6 +15,7 @@
         devShell = pkgs.mkShell {
           packages = with pkgs; [
             nixfmt-rfc-style
+            nixd
           ];
         };
         formatter = pkgs.nixfmt-rfc-style;

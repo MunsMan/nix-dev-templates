@@ -31,6 +31,10 @@
           path = ./rust;
           description = "A basic rust flake using the stable toolchain.";
         };
+        pnpm = {
+          path = ./pnpm;
+          description = "A basic pnpm flake using node";
+        };
       };
     };
 }

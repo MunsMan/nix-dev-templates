@@ -22,7 +22,7 @@
       }
     )
     // {
-      templates = {
+      templates = rec {
         latex = {
           path = ./latex;
           description = "A basic latex starter template";
@@ -35,6 +35,11 @@
           path = ./pnpm;
           description = "A basic pnpm flake using node";
         };
+        basic = {
+          path = ./basic;
+          description = "A basic flake template";
+        };
+        default = basic;
       };
     };
 }

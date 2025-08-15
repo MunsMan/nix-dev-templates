@@ -19,6 +19,8 @@
         devShell = pkgs.mkShellNoCC {
           packages = with pkgs; [
             typst
+            typstyle
+            tinymist
           ];
         };
         packages.default = pkgs.stdenvNoCC.mkDerivation {
@@ -32,9 +34,9 @@
             '';
           installPhase = # bash
             ''
-                mkdir -p $out
-                cp output.pdf $out/
-              '';
+              mkdir -p $out
+              cp output.pdf $out/
+            '';
         };
       }
     );

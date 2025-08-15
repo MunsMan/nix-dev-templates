@@ -27,6 +27,10 @@
           path = ./latex;
           description = "A basic latex starter template";
         };
+        typst = {
+          path = ./typst;
+          description = "A basic typst starter template";
+        };
         rust = {
           path = ./rust;
           description = "A basic rust flake using the stable toolchain.";

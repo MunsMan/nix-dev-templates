@@ -47,6 +47,10 @@
           path = ./esp-rs;
           description = "Project structure for the Esp32 with Rust";
         };
+        python = {
+          path = ./python;
+          description = "A basic python template";
+        };
         default = basic;
       };
     };

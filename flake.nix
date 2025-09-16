@@ -43,6 +43,10 @@
           path = ./basic;
           description = "A basic flake template";
         };
+        esp-rs = {
+          path = ./esp-rs;
+          description = "Project structure for the Esp32 with Rust";
+        };
         default = basic;
       };
     };

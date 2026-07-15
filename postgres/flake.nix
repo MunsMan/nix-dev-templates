@@ -48,7 +48,7 @@
           ];
 
           shellHook = ''
-                  export PGDATA="${pgDataDir}"
+            export PGDATA="${pgDataDir}"
             export PGPORT=${toString pgPort}
             export PGLOG="$PGDATA/postgres.log"
 

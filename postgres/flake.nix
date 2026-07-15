@@ -22,12 +22,33 @@
         }:
         let
           postgresDb = pkgs.postgresql_18.withPackages (ps: [ ps.postgis ]);
+
+          # Define real executable scripts instead of aliases
+          pg-start = pkgs.writeShellScriptBin "pg-start" ''
+            ${postgresDb}/bin/pg_ctl -l "$PGLOG" -o "-p $PGPORT" -w start
+          '';
+          pg-stop = pkgs.writeShellScriptBin "pg-stop" ''
+            ${postgresDb}/bin/pg_ctl -m fast -w stop
+          '';
+          pg-status = pkgs.writeShellScriptBin "pg-status" ''
+            ${postgresDb}/bin/pg_ctl status
+          '';
+          pg-console = pkgs.writeShellScriptBin "pg-console" ''
+            ${postgresDb}/bin/psql -p "$PGPORT" "$@"
+          '';
         in
         {
-          packages = [ postgresDb ];
+          packages = [
+            postgresDb
+            pg-start
+            pg-stop
+            pg-status
+            pg-console
+
+          ];
 
           shellHook = ''
-            export PGDATA="${pgDataDir}"
+                  export PGDATA="${pgDataDir}"
             export PGPORT=${toString pgPort}
             export PGLOG="$PGDATA/postgres.log"
 
@@ -44,11 +65,6 @@
               ${postgresDb}/bin/pg_ctl -m fast -w stop
               echo "PostGIS setup complete."
             fi
-
-            alias pg-start="${postgresDb}/bin/pg_ctl -l \$PGLOG -o \"-p \$PGPORT\" -w start"
-            alias pg-stop="${postgresDb}/bin/pg_ctl -m fast -w stop"
-            alias pg-status="${postgresDb}/bin/pg_ctl status"
-            alias pg-console="${postgresDb}/bin/psql -p \$PGPORT"
           '';
         };
     in

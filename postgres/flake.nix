@@ -21,7 +21,7 @@
           pgPort ? 5432,
         }:
         let
-          postgresDb = pkgs.postgresql_16.withPackages (ps: [ ps.postgis ]);
+          postgresDb = pkgs.postgresql_18.withPackages (ps: [ ps.postgis ]);
         in
         {
           packages = [ postgresDb ];

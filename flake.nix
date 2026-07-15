@@ -51,6 +51,10 @@
           path = ./python;
           description = "A basic python template";
         };
+        postgres = {
+          path = ./postgres;
+          description = "An isolated local PostgreSQL + PostGIS development environment";
+        };
         default = basic;
       };
     };
